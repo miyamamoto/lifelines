@@ -41,6 +41,15 @@ def create_scipy_stats_model_from_lifelines_model(model):
         scipy_dist = "expon"
         sparams = (0, model.lambda_)
 
+    # ここから追加
+    elif dist == "gamma":
+        scipy_dist = "gamma"
+        a = 1 / (model.lambda_)**2
+        l = 0                                       # loc
+        s = (model.lambda_)**2 * np.exp(model.mu_)  # scale
+        sparams = (a, l, s)
+    # ここまで追加
+
     else:
         raise NotImplementedError("Distribution not implemented in SciPy")
 
