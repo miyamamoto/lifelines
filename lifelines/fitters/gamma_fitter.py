@@ -128,7 +128,8 @@ class GammaFitter(KnownModelParametricUnivariateFitter):
         if lambda_ > 0:
             v = -gammainccln(ilambda_2, safe_exp(lambda_ * Z - 2 * np.log(lambda_)))
         else:
-            v = -gammaincln(ilambda_2, safe_
+            v = -gammaincln(ilambda_2, safe_exp(lambda_ * Z - 2 * np.log(-lambda_)))
+        return v
 
     def _log_1m_sf(self, params, times):
         mu_, lambda_ = params
@@ -159,7 +160,7 @@ class GammaFitter(KnownModelParametricUnivariateFitter):
             )
         return v
 
-     def percentile(self, p):
+    def percentile(self, p):
         lambda_ = self.lambda_
         if lambda_ > 0:
             return exp(lambda_ * log(gammainccinv(1 / lambda_ ** 2, p) * lambda_ ** 2) / lambda_) * exp(self.mu_)
