@@ -9,7 +9,6 @@ from lifelines.utils.safe_exp import safe_exp
 
 # class GeneralizedGammaFitter(KnownModelParametricUnivariateFitter):  # 変更前
 class GammaFitter(KnownModelParametricUnivariateFitter):               # 変更後
-    （中略）
     # _fitted_parameter_names = ["mu_", "ln_sigma_", "lambda_"]        # 変更前
     # _bounds = [(None, None), (None, None), (None, None)]             # 変更前
     # _compare_to_values = np.array([0.0, 0.0, 1.0])                   # 変更前
