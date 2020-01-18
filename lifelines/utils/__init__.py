@@ -145,6 +145,13 @@ def qth_survival_times(q, survival_functions) -> Union[pd.DataFrame, float]:
 
     survival_functions = pd.DataFrame(survival_functions)
 
+    # 追加ここから
+    if (survival_functions.columns[0] == 'empirical quantiles') & (len(survival_functions) == len(q)):
+        survival_functions['empirical quantiles'] = q.values
+    else:
+        pass
+    # 追加ここまで
+
     if survival_functions.shape[1] == 1 and q.shape == (1,):
         q = q[0]
         # If you add print statements to `qth_survival_time`, you'll see it's called
